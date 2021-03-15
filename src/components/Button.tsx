@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-interface ButtonProps {
+interface Props {
   sortByHeaviest: boolean;
-  onClickFunction: any;
+  onClickFunction: () => void;
 }
 
-const Button = (props: ButtonProps) => {
+const Button: React.FC<Props> = ({sortByHeaviest, onClickFunction}) => {
 
   return (
-    <ButtonContainer onClick={props.onClickFunction}>{props.sortByHeaviest ? "Lightest": "Heaviest"}</ButtonContainer>
+    <ButtonContainer onClick={onClickFunction}>{sortByHeaviest ? "Lightest": "Heaviest"}</ButtonContainer>
   )
 }
 

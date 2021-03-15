@@ -1,31 +1,26 @@
-import React, { Component, useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
+import React from 'react';
 import styled from 'styled-components/macro';
 
-import './App.css';
 import Header from './components/Header';
 import Home from './pages/Home';
-import RocketDetails from './pages/RocketDetails';
 
-
-function App() {
-
+const App: React.FC = () => {
 
   return (
-    <div className="App">
+    <AppContainer>
       <Header />
       <MainContainer>
-        <BrowserRouter>
-          <Route path="/" exact component={Home} />
-          <Route path="/rocket/:id" exact component={RocketDetails} />
-        </BrowserRouter>
+            <Home />
       </MainContainer>
-    </div>
+    </AppContainer>
   );
-}
+};
 
 export default App;
+
+const AppContainer = styled.div`
+  text-align: center;
+`;
 
 const MainContainer = styled.main`
   background: #000;

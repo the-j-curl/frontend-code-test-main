@@ -1,9 +1,9 @@
-import React, { FunctionComponent }  from "react";
+import React from "react";
 import styled from 'styled-components/macro';
 
 import logo from '../logo.png';
 
-const Header: FunctionComponent = () => {
+const Header: React.FC = () => {
 
 return (
   <AppHeader>

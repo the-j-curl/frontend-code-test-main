@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React from "react";
 import { useQuery, gql } from "@apollo/client";
 import styled from 'styled-components/macro';
 import Moment from 'react-moment';
@@ -23,21 +23,18 @@ const launches = gql`
 
 interface Launches {
   isLaunchUpcoming: boolean;
-
 };
 
-const UpcomingLaunches = (props: Launches) => {
+const UpcomingLaunches: React.FC = () => {
   const { loading, error, data } = useQuery(launches);
 
   if (loading) return <p>Loading... 🚀 </p>;
   if (error) return <p>Error 😢</p>;
 
   const upcomingData: Array<any> = data.launchesUpcoming;
-  const isLaunchUpcoming: Boolean = false;
-  // const isLaunchUpcoming: Boolean = upcomingData[0].upcoming;
-  console.log(isLaunchUpcoming);
+  const isLaunchUpcoming: Boolean = upcomingData[0].upcoming;
 
-     return (
+  return (
     <UpcomingSection>
       <SubHeading>Launches</SubHeading>
       <UpcomingSubHeading>Upcoming Launch: <Span isLaunchUpcoming> {isLaunchUpcoming ? "Yes" : "No"}</Span></UpcomingSubHeading>
@@ -54,12 +51,11 @@ const UpcomingLaunches = (props: Launches) => {
       ))}
      </UpcomingSection>
   );  
-}
+};
 
 export default UpcomingLaunches;
 
 const UpcomingSection = styled.section`
-  /* border: 1px solid white; */
   margin-top: 100px;
   width: 95%;
 

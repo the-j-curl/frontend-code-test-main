@@ -1,7 +1,7 @@
-import React, {FunctionComponent} from "react";
+import React from "react";
 import styled from 'styled-components/macro';
 
-interface RocketDetails {
+interface Props {
     name: string;
     weight: number;
     firstFlight: number;
@@ -9,10 +9,12 @@ interface RocketDetails {
     cost: number;
     wikipedia: string;
     height: number;
+    diameter: number;
+    success: number;
+  };
 
-  }
-
-const RocketCard = (props: RocketDetails) => {
+// const RocketCard = (props: RocketProps) => {
+const RocketCard: React.FC<Props> = ({name, description, weight, height, diameter, success, firstFlight, cost, wikipedia}) => {
 
   const numberWithCommas = (x: number) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -24,18 +26,18 @@ const RocketCard = (props: RocketDetails) => {
     maximumFractionDigits: 0, 
   });
   
-   
- 
   return(
     <CardContainer>
-      <RocketName>{props.name}</RocketName>
-      <RocketDescription>{props.description}</RocketDescription>
+      <RocketName>{name}</RocketName>
+      <RocketDescription>{description}</RocketDescription>
       <H3>Overview</H3>
-      <RocketInfo><OverviewText>Mass:</OverviewText><OverviewText>{numberWithCommas(props.weight)} kg</OverviewText></RocketInfo>
-      <RocketInfo><OverviewText>Height:</OverviewText><OverviewText>{props.height} m</OverviewText></RocketInfo>
-      <RocketInfo><OverviewText>First Flight:</OverviewText><OverviewText>{props.firstFlight}</OverviewText></RocketInfo>
-      <RocketInfo><OverviewText>Cost:</OverviewText><OverviewText>{formatter.format(props.cost)}</OverviewText></RocketInfo>
-      <RocketInfo><OverviewText>More Info:</OverviewText><a href= {`${props.wikipedia}`}><OverviewText>Wikipedia</OverviewText></a></RocketInfo>
+      <RocketInfo><OverviewText>Mass:</OverviewText><OverviewText>{numberWithCommas(weight)} kg</OverviewText></RocketInfo>
+      <RocketInfo><OverviewText>Height:</OverviewText><OverviewText>{height} m</OverviewText></RocketInfo>
+      <RocketInfo><OverviewText>Diameter:</OverviewText><OverviewText>{diameter} m</OverviewText></RocketInfo>
+      <RocketInfo><OverviewText>Success Rate:</OverviewText><OverviewText>{success}%</OverviewText></RocketInfo>
+      <RocketInfo><OverviewText>First Flight:</OverviewText><OverviewText>{firstFlight}</OverviewText></RocketInfo>
+      <RocketInfo><OverviewText>Cost:</OverviewText><OverviewText>{formatter.format(cost)}</OverviewText></RocketInfo>
+      <RocketInfo><OverviewText>More Info:</OverviewText><a href= {`${wikipedia}`}><OverviewText>Wikipedia</OverviewText></a></RocketInfo>
     </CardContainer>
   )
 };
@@ -46,7 +48,7 @@ const CardContainer = styled.article`
   border: 1px solid #000;
   background-color: rgba(43, 43, 43, 0.9);
   width: 90%;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   padding: 10px;
 
   @media (min-width: 768px) {
@@ -87,6 +89,10 @@ const RocketInfo = styled.div`
   align-items: center;
   border-bottom: 1px solid #5e5d5d;
   margin-bottom: 5px;
+
+  @media (min-height: 1024px) {
+    margin-bottom: 10px;
+  }
 `;
 
 const H3 = styled.h3`

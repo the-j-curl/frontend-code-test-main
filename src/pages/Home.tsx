@@ -1,5 +1,4 @@
-import React, { Component, useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import styled from 'styled-components';
 
@@ -12,15 +11,19 @@ const rocketsResult = gql`
     rocketsResult(limit: 10, offset: 0) {
       data {
         name
-        mass {
-          kg
-        }
         description
         first_flight
         cost_per_launch
         wikipedia
         id
+        success_rate_pct
+        mass {
+          kg
+        }
         height {
+          meters
+        }
+        diameter {
           meters
         }
       }
@@ -28,23 +31,15 @@ const rocketsResult = gql`
   }
   
 `;
-interface HomeTest {
-  isLaunchUpcoming: boolean;
-} 
 
-const Home = (props: HomeTest) => {
+const Home: React.FC = () => {
 
   const { loading, error, data } = useQuery(rocketsResult);
-  // const [rocketArray, setRocketArray] = useState([]);
-  const [sortByHeaviest, setSortByHeaviest] = useState(false);
+  const [sortByHeaviest, setSortByHeaviest] = useState<boolean>(false);
 
   const handleOnClick = () => {
     setSortByHeaviest(!sortByHeaviest);
-    // if (sortByHeaviest) {
-    //   setRocketArray()
-    // } 
-    console.log(sortByHeaviest);
-  }
+  };
 
   console.log(data)
   if (loading) return <p>Loading... 🚀 </p>;
@@ -58,21 +53,21 @@ const Home = (props: HomeTest) => {
 
   return (
       <>
-        <UpcomingLaunches isLaunchUpcoming />
+        <UpcomingLaunches />
         <SubHeading>Rockets</SubHeading>
         <SortContainer>Sort by: <Button sortByHeaviest={sortByHeaviest} onClickFunction={handleOnClick} /> </SortContainer>
         {sortByHeaviest ? 
-        sortedArrayHeaviest.map((rocket) => (
-         <RocketCard key={rocket.id} name={rocket.name} weight={rocket.mass.kg} firstFlight={rocket.first_flight} description={rocket.description} cost={rocket.cost_per_launch} wikipedia={rocket.wikipedia} height={rocket.height.meters} />
-       
-      ))
-      :
-      sortedArrayLightest.map((rocket) => (
-        <RocketCard key={rocket.id} name={rocket.name} weight={rocket.mass.kg} firstFlight={rocket.first_flight} description={rocket.description} cost={rocket.cost_per_launch} wikipedia={rocket.wikipedia} height={rocket.height.meters} />
-      ))}
-      </>
+          sortedArrayHeaviest.map((rocket) => (
+            <RocketCard key={rocket.id} name={rocket.name} weight={rocket.mass.kg} firstFlight={rocket.first_flight} description={rocket.description} cost={rocket.cost_per_launch} wikipedia={rocket.wikipedia} height={rocket.height.meters} diameter={rocket.diameter.meters} success={rocket.success_rate_pct} />
+        
+          ))
+        :
+          sortedArrayLightest.map((rocket) => (
+            <RocketCard key={rocket.id} name={rocket.name} weight={rocket.mass.kg} firstFlight={rocket.first_flight} description={rocket.description} cost={rocket.cost_per_launch} wikipedia={rocket.wikipedia} height={rocket.height.meters} diameter={rocket.diameter.meters} success={rocket.success_rate_pct} />
+        ))}
+    </>
   );
-}
+};
 
 export default Home;
 
