@@ -17,7 +17,7 @@ const RocketCard: React.FC<Props> = ({name, description, weight, height, diamete
 
   const numberWithCommas = (x: number) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+};
 
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -25,7 +25,7 @@ const RocketCard: React.FC<Props> = ({name, description, weight, height, diamete
     maximumFractionDigits: 0, 
   });
   
-  return(
+  return (
     <CardContainer>
       <RocketName>{name}</RocketName>
       <RocketDescription>{description}</RocketDescription>

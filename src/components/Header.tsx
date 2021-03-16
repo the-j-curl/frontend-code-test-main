@@ -5,13 +5,13 @@ import logo from '../logo.png';
 
 const Header: React.FC = () => {
 
-return (
-  <AppHeader>
-    <LOGO src={logo} className="App-logo" alt="logo" />
-    <SubTitle>SpaceX data</SubTitle>
-  </AppHeader>
-)
-}
+  return (
+    <AppHeader>
+      <LOGO src={logo} className="App-logo" alt="logo" />
+      <SubTitle>SpaceX data</SubTitle>
+    </AppHeader>
+  );
+};
 
 export default Header;
 

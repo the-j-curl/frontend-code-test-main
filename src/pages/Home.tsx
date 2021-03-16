@@ -29,7 +29,6 @@ const rocketsResult = gql`
       }
     }
   }
-  
 `;
 
 const Home: React.FC = () => {
@@ -45,10 +44,8 @@ const Home: React.FC = () => {
   if (error) return <p>Error 😢</p>;
 
   const dataArray: Array<any> = data.rocketsResult.data;
-
   const sortedArrayHeaviest: Array<any> = dataArray.slice().sort((a, b) => b.mass.kg - a.mass.kg);
   const sortedArrayLightest: Array<any> = dataArray.slice().sort((a, b) => a.mass.kg - b.mass.kg);
-
 
   return (
       <>
@@ -58,12 +55,34 @@ const Home: React.FC = () => {
         <SortContainer>Sort by: <Button sortByHeaviest={sortByHeaviest} onClickFunction={handleOnClick} /></SortContainer>
         {sortByHeaviest ? 
           sortedArrayHeaviest.map((rocket) => (
-            <RocketCard key={rocket.id} name={rocket.name} weight={rocket.mass.kg} firstFlight={rocket.first_flight} description={rocket.description} cost={rocket.cost_per_launch} wikipedia={rocket.wikipedia} height={rocket.height.meters} diameter={rocket.diameter.meters} success={rocket.success_rate_pct} />
+            <RocketCard 
+              key={rocket.id} 
+              name={rocket.name} 
+              weight={rocket.mass.kg} 
+              firstFlight={rocket.first_flight} 
+              description={rocket.description} 
+              cost={rocket.cost_per_launch} 
+              wikipedia={rocket.wikipedia} 
+              height={rocket.height.meters} 
+              diameter={rocket.diameter.meters} 
+              success={rocket.success_rate_pct} 
+            />
         
           ))
         :
           sortedArrayLightest.map((rocket) => (
-            <RocketCard key={rocket.id} name={rocket.name} weight={rocket.mass.kg} firstFlight={rocket.first_flight} description={rocket.description} cost={rocket.cost_per_launch} wikipedia={rocket.wikipedia} height={rocket.height.meters} diameter={rocket.diameter.meters} success={rocket.success_rate_pct} />
+            <RocketCard 
+              key={rocket.id} 
+              name={rocket.name} 
+              weight={rocket.mass.kg} 
+              firstFlight={rocket.first_flight} 
+              description={rocket.description} 
+              cost={rocket.cost_per_launch} 
+              wikipedia={rocket.wikipedia} 
+              height={rocket.height.meters} 
+              diameter={rocket.diameter.meters} 
+              success={rocket.success_rate_pct} 
+            />
         ))}
     </>
   );

@@ -4,14 +4,14 @@ import styled from 'styled-components/macro';
 interface Props {
   sortByHeaviest: boolean;
   onClickFunction: () => void;
-}
+};
 
 const Button: React.FC<Props> = ({sortByHeaviest, onClickFunction}) => {
 
   return (
     <ButtonContainer onClick={onClickFunction}>{sortByHeaviest ? "Lightest": "Heaviest"}</ButtonContainer>
-  )
-}
+  );
+};
 
 export default Button;
 
