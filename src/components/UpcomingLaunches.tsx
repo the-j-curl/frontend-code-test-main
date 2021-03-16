@@ -3,7 +3,7 @@ import { useQuery, gql } from "@apollo/client";
 import styled from 'styled-components/macro';
 import Moment from 'react-moment';
 
-import {SubHeading} from '../pages/Home';
+import {BoldText, SubHeading} from '../pages/Home';
 
 const launches = gql`
   query launches {
@@ -94,11 +94,6 @@ const NextLaunchText = styled.p`
   color: #e2e0e0;
   font-weight: 400;
 `; 
-
-const BoldText = styled.span`
-  font-weight: 600;
-  color: #fff;
-`;
 
 const LaunchDetails = styled.p`
   text-align: left;

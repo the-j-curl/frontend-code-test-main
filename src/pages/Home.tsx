@@ -41,7 +41,6 @@ const Home: React.FC = () => {
     setSortByHeaviest(!sortByHeaviest);
   };
 
-  console.log(data)
   if (loading) return <p>Loading... 🚀 </p>;
   if (error) return <p>Error 😢</p>;
 
@@ -55,7 +54,8 @@ const Home: React.FC = () => {
       <>
         <UpcomingLaunches />
         <SubHeading>Rockets</SubHeading>
-        <SortContainer>Sort by: <Button sortByHeaviest={sortByHeaviest} onClickFunction={handleOnClick} /> </SortContainer>
+        <RocketNumberText>Number of rockets: <BoldText>{dataArray.length}</BoldText></RocketNumberText>
+        <SortContainer>Sort by: <Button sortByHeaviest={sortByHeaviest} onClickFunction={handleOnClick} /></SortContainer>
         {sortByHeaviest ? 
           sortedArrayHeaviest.map((rocket) => (
             <RocketCard key={rocket.id} name={rocket.name} weight={rocket.mass.kg} firstFlight={rocket.first_flight} description={rocket.description} cost={rocket.cost_per_launch} wikipedia={rocket.wikipedia} height={rocket.height.meters} diameter={rocket.diameter.meters} success={rocket.success_rate_pct} />
@@ -73,6 +73,15 @@ export default Home;
 
 export const SubHeading = styled.h2`
   font-family: 'Montserrat', sans-serif;
+`;
+
+export const BoldText = styled.span`
+  font-weight: 600;
+  color: #fff;
+`;
+
+const RocketNumberText = styled.p`
+  margin: 10px 0;
 `;
 
 const SortContainer = styled.div`

@@ -13,7 +13,6 @@ interface Props {
     success: number;
   };
 
-// const RocketCard = (props: RocketProps) => {
 const RocketCard: React.FC<Props> = ({name, description, weight, height, diameter, success, firstFlight, cost, wikipedia}) => {
 
   const numberWithCommas = (x: number) => {
