@@ -1,4 +1,5 @@
 {
+  "homepage": "http://the-j-curl.github.io/frontend-code-test-copy.git",
   "name": "frontend-code-test",
   "version": "0.1.0",
   "private": true,
@@ -11,7 +12,6 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "gh-pages": "^3.1.0",
     "graphql": "^15.5.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -24,6 +24,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -50,6 +52,7 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7",
-    "@types/styled-components": "^5.1.8"
+    "@types/styled-components": "^5.1.8",
+    "gh-pages": "^3.1.0"
   }
 }
